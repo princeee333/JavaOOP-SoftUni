@@ -15,7 +15,13 @@ public class Main {
 
         for (int i = 0; i < numberOfPeople; i++) {
             String[] input = scanner.nextLine().split(" ");
-            people.add(new Person(input[0], input[1], Integer.parseInt(input[2]), Double.parseDouble(input[3])));
+            try {
+                Person person = new Person(input[0], input[1], Integer.parseInt(input[2]), Double.parseDouble(input[3]));
+                people.add(person);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
         }
         double bonus = Double.parseDouble(scanner.nextLine());
         for (Person person : people) {
@@ -23,4 +29,6 @@ public class Main {
             System.out.println(person.toString());
         }
     }
+
 }
+

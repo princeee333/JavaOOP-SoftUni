@@ -1,7 +1,9 @@
 package test;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
@@ -13,21 +15,12 @@ public class Main {
 
         for (int i = 0; i < numberOfPeople; i++) {
             String[] input = scanner.nextLine().split(" ");
-
-            String firstName = input[0];
-            String lastName = input[1];
-            int age = Integer.parseInt(input[2]);
-
-            Person person = new Person(firstName, lastName, age);
-            people.add(person);
+            people.add(new Person(input[0], input[1], Integer.parseInt(input[2]), Double.parseDouble(input[3])));
         }
-
-        Collections.sort(people, Comparator.comparing(Person::getFirstName).thenComparingInt(Person::getAge));
-
-
+        double bonus = Double.parseDouble(scanner.nextLine());
         for (Person person : people) {
+            person.increaseSalary(bonus);
             System.out.println(person.toString());
         }
     }
-
 }
